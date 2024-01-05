@@ -1,25 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Chart from '../../components/Chart/Chart';
-
-// const style = {
-//   position: 'absolute' as 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: '90%',
-//   height: '80%',
-//   display: 'flex',
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   boxShadow: 24,
-//   p: 4,
-// };
+import Chart from '../../components/Chart/Chart'
+import { Typography, Grid } from '@mui/material';
+import './Homepage.css';
 
 const HomePage: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -27,8 +11,42 @@ const HomePage: React.FC = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <div 
+      className='container'
+    >
+      <Grid container spacing={2}>
+        <Grid item md={7}>
+          <Typography 
+            variant='h3'
+            className='title'
+          >
+            Browser Market Shares
+          </Typography>
+          <Typography 
+            variant='h5'
+          >
+            Browser market share refers to the distribution of internet users among various web browsers, indicating the popularity of each browser in the online landscape. It plays a crucial role in web development and digital marketing strategies, influencing how websites are designed and optimized. The market share is often determined by analyzing data from analytics services, browser vendors, and independent research firms. Leading browsers such as Google Chrome, Mozilla Firefox, Microsoft Edge, Apple Safari, and Opera continually compete for dominance. Understanding browser market share trends is essential for web developers to ensure compatibility and performance across different platforms, and it provides valuable insights for businesses aiming to optimize their online presence for the broadest audience.
+          </Typography>
+          <Typography
+            variant='h5'
+          >
+           There is a comparison between browsers and among its different versions. 
+            <Button 
+              onClick={handleOpen}
+              style={{fontWeight: 'bold'}}
+            >
+              Click here to show the chart.
+            </Button>
+          </Typography>
+        </Grid>
+        <Grid item md={5}>
+          <img
+            className="homepage-image"
+            src="/Homepage.jpeg"
+            alt="browser share markets"
+          />
+        </Grid>
+      </Grid>
       <Modal
         open={open}
         onClose={handleClose}
@@ -36,15 +54,8 @@ const HomePage: React.FC = () => {
         aria-describedby="modal-modal-description"
       >
         <Chart />
-        {/* <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box> */}
       </Modal>
+      
     </div>
   )
 };
